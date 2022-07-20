@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - mvn clean package
+artifacts:
+  files:
+    - 'Dockerfile'
+    - target/fo-rest-0.0.1-SNAPSHOT.jar
