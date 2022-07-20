@@ -3,7 +3,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - mvn clean package
+      - cd fo-rest && mvn clean package
 artifacts:
   files:
     - 'Dockerfile'
