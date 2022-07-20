@@ -1,5 +1,6 @@
 package com.forest.forest.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,22 +16,11 @@ import com.forest.forest.models.Product;
 import com.forest.forest.models.User;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Long>
+public interface CartRepository extends JpaRepository<Cart, Timestamp>
 {
 	//Does this work??
-	List<Product> FindByProductContaining(int price);
+	//public List<Product> FindByProductContaining(int price);
 	
-	/////////////////////////////////////////////////////////////
-	//    --------------------Debugging--------------------    //
-	/////////////////////////////////////////////////////////////
-		// long id
-	List<Product> findByIdIsNull();
-		// List<User> userList
-	List<Product> findByUserListIsNull();
-		// List<Product> productList
-	List<Product> findByProductListIsNull();
-		// int count
-	List<Product> findByCountIsNull();
-
+	public Optional<List<Cart>> findByUser(User user);
 
 }
