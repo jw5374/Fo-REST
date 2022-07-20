@@ -1,4 +1,4 @@
-package com.forest.forest.entity;
+package com.forest.forest.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ import javax.validation.constraints.Pattern;
 public class User {
 
 	@Id
-	@JoinColumn(name="userId")
+	@Column(name = "username", unique=true)
 	private String username;
 	
 	@Column(name = "pass")
@@ -34,6 +34,13 @@ public class User {
 	
 	@Column(name = "shipping_address")
 	private String shippingAddress;
+
+	
+	
+	
+	/////////////////////////////////////////////////////////////
+	//    -------------------Constructors------------------    //
+	/////////////////////////////////////////////////////////////	
 	
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -47,9 +54,14 @@ public class User {
 		this.shippingAddress=shippinAddress;
 	}
 
+	
+	
+	
 	/////////////////////////////////////////////////////////////
 	// -------------------GETTERS AND SETTERS------------------//
 	/////////////////////////////////////////////////////////////
+	
+	// username
 	
 	public String getUsername() {
 		return username;
@@ -59,6 +71,8 @@ public class User {
 		this.username = username;
 	}
 
+	// pass
+	
 	public String getPass() {
 		return pass;
 	}
@@ -66,7 +80,9 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
+	
+	// email
+	
 	public String getEmail() {
 		return email;
 	}
@@ -75,6 +91,8 @@ public class User {
 		this.email = email;
 	}
 
+	//shippingAddress	
+	
 	public String getShippingAddress() {
 		return shippingAddress;
 	}
@@ -83,6 +101,15 @@ public class User {
 		this.shippingAddress = shippingAddress;
 	}
 
-	
-	
+
+
+	/////////////////////////////////////////////////////////////
+	//    ---------------------toString--------------------    //
+	/////////////////////////////////////////////////////////////	
+	 
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", pass=" + pass + ", email=" + email + ", shippingAddress="
+				+ shippingAddress + "]";
+	}
 }

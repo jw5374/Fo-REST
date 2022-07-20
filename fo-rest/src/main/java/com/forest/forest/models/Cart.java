@@ -1,4 +1,4 @@
-package com.forest.forest.entity;
+package com.forest.forest.models;
 
 
 import java.util.List;
@@ -29,48 +29,60 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="orderId")
-	private int id;
+	private long id;
 	
 	//mapped by examples always have lowercase of the class name
 	
 	
-    @OneToMany(mappedBy="userId", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany
+    @JoinColumn(name="userFk", referencedColumnName="orderId")
     private List<User> userList;
 	
-	@OneToMany(mappedBy="productId", cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Product> productId;
+	@OneToMany
+	@JoinColumn(name="productFk", referencedColumnName="orderId")
+	private List<Product> productList;
 	
 	
 	@Column(name="productCount")
 	private int count;
 	
 	
+	
+	
+	/////////////////////////////////////////////////////////////
+	//    -------------------Constructors------------------    //
+	/////////////////////////////////////////////////////////////	
+	
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Cart(long id, List<User> userList, List<Product> productList, int count) {
+		super();
+		this.id = id;
+		this.userList = userList;
+		this.productList = productList;
+		this.count = count;
+	}
+
+	
+	
 	/////////////////////////////////////////////////////////////
 	// -------------------GETTERS AND SETTERS------------------//
 	/////////////////////////////////////////////////////////////
 
-	public Cart(int id, List<User> userList, List<Product> productId, int count) {
-		super();
-		this.id = id;
-		this.userList = userList;
-		this.productId = productId;
-		this.count = count;
-	}
-
-
-	public int getId() {
+	// id
+	
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
+	// userList
 
 	public List<User> getUserList() {
 		return userList;
@@ -81,17 +93,19 @@ public class Cart {
 		this.userList = userList;
 	}
 
-
-	public List<Product> getProductId() {
-		return productId;
+	// productList
+	
+	public List<Product> getProductList() {
+		return productList;
 	}
 
 
-	public void setProductId(List<Product> productId) {
-		this.productId = productId;
+	public void setProductList(List<Product> productId) {
+		this.productList = productId;
 	}
 
-
+	// count
+	
 	public int getCount() {
 		return count;
 	}
@@ -99,6 +113,15 @@ public class Cart {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	/////////////////////////////////////////////////////////////
+	//    ---------------------toString--------------------    //
+	/////////////////////////////////////////////////////////////	
+
+	@Override
+	public String toString() {
+		return "Cart [id=" + id + ", userList=" + userList + ", productList=" + productList + ", count=" + count + "]";
 	}
 	
 	

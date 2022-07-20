@@ -1,4 +1,4 @@
-package com.forest.forest.entity;
+package com.forest.forest.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,8 +23,7 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JoinColumn(name="productId")
-	private int id;
+	private long id;
 	
 	@Column(name="name")
 	private String name;
@@ -39,12 +38,18 @@ public class Product {
 	private int count;
 	
 	
+	
+	
+	/////////////////////////////////////////////////////////////
+	//    -------------------Constructors------------------    //
+	/////////////////////////////////////////////////////////////	
+	
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public Product(int id, String name, String description, int price, int count) {
+	public Product(long id, String name, String description, int price, int count) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,20 +58,26 @@ public class Product {
 		this.count = count;
 	}
 	
+	
+	
+	
 	/////////////////////////////////////////////////////////////
 	// -------------------GETTERS AND SETTERS------------------//
 	/////////////////////////////////////////////////////////////
 
-	public int getId() {
+	// id
+	
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-
+	// name
+	
 	public String getName() {
 		return name;
 	}
@@ -76,6 +87,7 @@ public class Product {
 		this.name = name;
 	}
 
+	// description
 
 	public String getDescription() {
 		return description;
@@ -86,7 +98,8 @@ public class Product {
 		this.description = description;
 	}
 
-
+	// price
+	
 	public int getPrice() {
 		return price;
 	}
@@ -96,7 +109,8 @@ public class Product {
 		this.price = price;
 	}
 
-
+	// count
+	
 	public int getCount() {
 		return count;
 	}
@@ -104,6 +118,16 @@ public class Product {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	/////////////////////////////////////////////////////////////
+	//    ---------------------toString--------------------    //
+	/////////////////////////////////////////////////////////////	
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", count="
+				+ count + "]";
 	}
 	
 	
