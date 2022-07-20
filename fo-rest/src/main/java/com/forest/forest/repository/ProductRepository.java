@@ -14,12 +14,6 @@ import com.forest.forest.models.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> 
 {
-	
-	
-	
-	
-	/////////////////////////////////////////////////////////////
-	//    --------------------Debugging--------------------    //
-	/////////////////////////////////////////////////////////////
-
+	public List<Product> findByNameOrDescriptionContaining(String name, String description);
+	public Optional<Product> findById(long id);
 }

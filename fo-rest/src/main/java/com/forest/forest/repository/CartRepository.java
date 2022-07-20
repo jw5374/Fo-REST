@@ -21,11 +21,6 @@ public interface CartRepository extends JpaRepository<Cart, Timestamp>
 	//Does this work??
 	//public List<Product> FindByProductContaining(int price);
 	
-	public Optional<Cart> findByUser(User user);
-	
-	
-	/////////////////////////////////////////////////////////////
-	//    --------------------Debugging--------------------    //
-	/////////////////////////////////////////////////////////////
+	public Optional<List<Cart>> findByUser(User user);
 
 }
