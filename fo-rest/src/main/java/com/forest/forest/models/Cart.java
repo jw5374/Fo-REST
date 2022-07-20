@@ -1,21 +1,12 @@
 package com.forest.forest.models;
 
-
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="carts")
@@ -24,106 +15,67 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @NoArgsConstructor
 @AllArgsConstructor
 */
-public class Cart {
-	
+public class Cart 
+{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="orderId")
-	private long id;
+	@Column(name="timeordered")
+	private Timestamp timeStamp;
 	
-	//mapped by examples always have lowercase of the class name
+    @ManyToOne
+    @JoinColumn(name="userid")
+    private User user;
 	
+	@ManyToOne
+	@JoinColumn(name="productid")
+	private Product product;
 	
-    @OneToMany
-    @JoinColumn(name="userFk", referencedColumnName="orderId")
-    private List<User> userList;
-	
-	@OneToMany
-	@JoinColumn(name="productFk", referencedColumnName="orderId")
-	private List<Product> productList;
-	
-	
-	@Column(name="productCount")
+	@Column(name="productcount")
 	private int count;
-	
-	
-	
-	
-	/////////////////////////////////////////////////////////////
-	//    -------------------Constructors------------------    //
-	/////////////////////////////////////////////////////////////	
-	
-	public Cart() {
-		// TODO Auto-generated constructor stub
-	}
 
-	public Cart(long id, List<User> userList, List<Product> productList, int count) {
+	public Cart(Timestamp timeStamp, User user, Product product, int count) {
 		super();
-		this.id = id;
-		this.userList = userList;
-		this.productList = productList;
+		this.timeStamp = timeStamp;
+		this.user = user;
+		this.product = product;
 		this.count = count;
 	}
 
-	
-	
-	/////////////////////////////////////////////////////////////
-	// -------------------GETTERS AND SETTERS------------------//
-	/////////////////////////////////////////////////////////////
-
-	// id
-	
-	public long getId() {
-		return id;
+	public Timestamp getTimeStamp() {
+		return timeStamp;
 	}
 
-
-	public void setId(long id) {
-		this.id = id;
+	public void setTimeStamp(Timestamp timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
-	// userList
-
-	public List<User> getUserList() {
-		return userList;
+	public User getUser() {
+		return user;
 	}
 
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	// productList
-	
-	public List<Product> getProductList() {
-		return productList;
+	public Product getProduct() {
+		return product;
 	}
 
-
-	public void setProductList(List<Product> productId) {
-		this.productList = productId;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	// count
-	
 	public int getCount() {
 		return count;
 	}
-
 
 	public void setCount(int count) {
 		this.count = count;
 	}
 
-	/////////////////////////////////////////////////////////////
-	//    ---------------------toString--------------------    //
-	/////////////////////////////////////////////////////////////	
-
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", userList=" + userList + ", productList=" + productList + ", count=" + count + "]";
+		return "Cart [timeStamp=" + timeStamp + ", user=" + user + ", product=" + product + ", count=" + count + "]";
 	}
-	
 	
 	
 }
