@@ -2,7 +2,6 @@ package com.forest.forest.repository;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,6 +15,6 @@ public interface CartRepository extends JpaRepository<Cart, Timestamp>
 	//Does this work??
 	//public List<Product> FindByProductContaining(int price);
 	
-	public Optional<List<Cart>> findByUser(User user);
+	public List<Cart> findByUser(User user);
 
 }
