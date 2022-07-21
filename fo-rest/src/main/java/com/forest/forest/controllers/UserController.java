@@ -12,6 +12,7 @@ import com.forest.forest.service.UserService;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @Validated
 public class UserController {
