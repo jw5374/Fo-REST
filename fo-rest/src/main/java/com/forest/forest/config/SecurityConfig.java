@@ -36,7 +36,11 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.POST, "/login").permitAll()
         .and()
         .csrf().disable()
-        .formLogin().loginProcessingUrl("/login");
+        .formLogin().loginProcessingUrl("/login")
+        .and()
+        .logout().logoutUrl("/logout")
+        .invalidateHttpSession(true)
+        .deleteCookies("JSESSIONID");
 
       return http.build();
   }
