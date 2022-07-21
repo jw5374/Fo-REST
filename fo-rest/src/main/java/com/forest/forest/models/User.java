@@ -27,6 +27,10 @@ public class User {
     // "user" reference in cart
 	@OneToMany(mappedBy = "user") 
 	private List<Cart> userList;
+
+    public User(){
+        
+    }
     
     public User(String username, String password, String email, String shippingAddress){
         this.username = username;
