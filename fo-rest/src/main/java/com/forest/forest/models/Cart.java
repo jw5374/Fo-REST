@@ -32,7 +32,11 @@ public class Cart
 	@Column(name="productcount")
 	private int count;
 
-	public Cart(Timestamp timeStamp, User user, Product product, int count) {
+	public Cart(){
+		
+	}
+
+	public Cart(User user, Product product, int count, Timestamp timeStamp) {
 		super();
 		this.timeStamp = timeStamp;
 		this.user = user;

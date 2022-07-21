@@ -34,21 +34,24 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
         //HTTP Basic authentication
-        .httpBasic()
-        .and()
         .authorizeRequests()
-        .antMatchers(HttpMethod.POST, "/login").permitAll()
-        .and()
-        .csrf().disable()
-        .formLogin().loginProcessingUrl("/login")
-        .and()
-        .logout().logoutUrl("/logout")
+          .antMatchers("/", "/home").permitAll() 
+          .anyRequest().authenticated() 
+          .and()
+       .formLogin() 
+        .loginProcessingUrl("/login")
+         .permitAll()
+         .and()
+      .logout()
+        .logoutUrl("/logout") 
+        .permitAll()
         .invalidateHttpSession(true)
         .deleteCookies("JSESSIONID");
-
-
-        http.sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+      http  
+      .httpBasic() 
+      .and()
+      .csrf().disable()
+      .logout();
 
       return http.build();
   }
