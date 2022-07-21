@@ -18,10 +18,10 @@ public interface ProductRepository extends JpaRepository<Product, Long>
 		value = "SELECT * FROM products WHERE lower(name) LIKE %:nameSearch% OR lower(description) LIKE %:descSearch%",
 		nativeQuery = true
 	)
-	public List<Product> findByNameOrDescriptionContaining(
+	List<Product> findByNameOrDescriptionContaining(
 		@Param("nameSearch") String name, 
 		@Param("descSearch") String description
 	);
 	
-	public Optional<Product> findById(long id);
+	Optional<Product> findById(long id);
 }
