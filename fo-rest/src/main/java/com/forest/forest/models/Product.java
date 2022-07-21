@@ -31,7 +31,7 @@ public class Product {
 	private String description;
 	
 	@Column(name="price")
-	private int price;
+	private double price;
 	
 	@Column(name="count")
 	private int count;
@@ -101,7 +101,7 @@ public class Product {
 
 	// price
 	
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
