@@ -34,6 +34,7 @@ public class SecurityConfig {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
         //HTTP Basic authentication
+        .csrf().disable()
         .authorizeRequests()
           .antMatchers("/", "/home").permitAll() 
           .anyRequest().authenticated() 
@@ -47,11 +48,6 @@ public class SecurityConfig {
         .permitAll()
         .invalidateHttpSession(true)
         .deleteCookies("JSESSIONID");
-      http  
-      .httpBasic() 
-      .and()
-      .csrf().disable()
-      .logout();
 
       return http.build();
   }
