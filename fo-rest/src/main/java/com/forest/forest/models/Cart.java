@@ -36,7 +36,7 @@ public class Cart
 		
 	}
 
-	public Cart(User user, Product product, int count, Timestamp timeStamp) {
+	public Cart(Timestamp timeStamp, User user, Product product, int count) {
 		super();
 		this.timeStamp = timeStamp;
 		this.user = user;
