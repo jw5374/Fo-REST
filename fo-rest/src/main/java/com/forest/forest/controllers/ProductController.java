@@ -2,6 +2,7 @@ package com.forest.forest.controllers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -43,5 +44,15 @@ public class ProductController {
     public List<Product> searchProduct(@RequestParam("q") String search) {
         search = search.toLowerCase();
         return prodRepo.findByNameOrDescriptionContaining(search, search);
+    }
+
+    @ResponseBody
+    @GetMapping("/random")
+    public List<Product> searchProduct() {
+        List<Product> allProd = prodRepo.findAll();
+        Random rand = new Random();
+        int randIndex = rand.nextInt(allProd.size() - 8);
+
+        return allProd.subList(randIndex, randIndex + 8);
     }
 }
