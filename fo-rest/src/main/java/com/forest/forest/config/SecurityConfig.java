@@ -33,21 +33,18 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-        //HTTP Basic authentication
-        .csrf().disable()
+        .httpBasic()
+        .and()
         .authorizeRequests()
-          .antMatchers("/", "/home").permitAll() 
-          .anyRequest().authenticated() 
-          .and()
-       .formLogin() 
-        .loginProcessingUrl("/login")
-         .permitAll()
-         .and()
-      .logout()
-        .logoutUrl("/logout") 
-        .permitAll()
+        .antMatchers(HttpMethod.POST, "/login").permitAll()
+        .and()
+        .csrf().disable()
+        .formLogin().loginProcessingUrl("/login")
+        .and()
+        .logout().logoutUrl("/logout")
         .invalidateHttpSession(true)
         .deleteCookies("JSESSIONID");
+
 
       return http.build();
   }
