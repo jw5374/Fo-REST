@@ -13,11 +13,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class SecurityConfig {
@@ -28,6 +33,7 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+        .cors().and()
         .csrf().disable()
         .authorizeRequests()
           .antMatchers("/", "/home", "/register**", "/products/**", "/products**").permitAll() 
@@ -41,6 +47,16 @@ public class SecurityConfig {
             response.setContentType("application/json");
             PrintWriter res = response.getWriter();
             res.println("{ \"username\": " + "\"" + request.getParameter("username") + "\" }" );
+          }
+        })
+        .failureHandler(new AuthenticationFailureHandler() {
+          @Override
+          public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+              AuthenticationException exception) throws IOException, ServletException {
+                response.setStatus(400);
+                response.setContentType("application/json");
+                PrintWriter res = response.getWriter();
+                res.println("{ \"username\": " + "\"" + request.getParameter("username") + "\", \"password\": " + "\"" + request.getParameter("password") + "\" }" );
           }
         })
         .loginProcessingUrl("/login")
@@ -64,6 +80,13 @@ public class SecurityConfig {
     jdbcDaoImpl.setAuthoritiesByUsernameQuery("SELECT username, 'ROLE_USER' FROM users WHERE username=?");
     return jdbcDaoImpl;
 	}
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+      UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+      source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+      return source;
+  }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
