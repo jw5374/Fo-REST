@@ -18,7 +18,7 @@ public class CartService {
         return cartRepository.findAll();        
     }
 
-    public List<Cart> findCartsByUsername(User user) {
+    public List<Cart> findByUsername(User user) {
         return cartRepository.findByUser(user);        
     }
 }

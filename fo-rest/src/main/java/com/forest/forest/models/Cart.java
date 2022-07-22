@@ -2,8 +2,6 @@ package com.forest.forest.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,15 +22,18 @@ import java.sql.Timestamp;
 public class Cart 
 {
 	@Id
+	@Column(name="cartid")
+	private int cartid;
+
 	@Column(name="timeordered")
 	private Timestamp timeStamp;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
     @JoinColumn(name="userid")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="productid")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Product product;
@@ -41,13 +42,21 @@ public class Cart
 	private int count;
 
 	public Cart() { }
-
-	public Cart(User user, Product product, int count, Timestamp timeStamp) {
-		super();
+	
+	public Cart(int cartid, Timestamp timeStamp, User user, Product product, int count) {
+		this.cartid = cartid;
 		this.timeStamp = timeStamp;
 		this.user = user;
 		this.product = product;
 		this.count = count;
+	}
+
+	public int getCartid() {
+		return cartid;
+	}
+
+	public void setCartid(int cartid) {
+		this.cartid = cartid;
 	}
 
 	public Timestamp getTimeStamp() {
@@ -86,6 +95,5 @@ public class Cart
 	public String toString() {
 		return "Cart [timeStamp=" + timeStamp + ", user=" + user + ", product=" + product + ", count=" + count + "]";
 	}
-	
 	
 }
