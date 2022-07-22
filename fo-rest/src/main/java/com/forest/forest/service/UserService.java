@@ -1,6 +1,7 @@
 package com.forest.forest.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +21,25 @@ public class UserService {
 
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    public User findByUsername(String username) {
+        Optional<User> u = userRepository.findByUsername(username);
+        if(u.isPresent()) {
+            return u.get();
+        }
+        return null;
+    }
+
+    public User verifyUserLogin(String username, String password) {
+        Optional<User> u = userRepository.findByUsername(username);
+        if(!u.isPresent()) {
+            return null;
+        }
+        if(passwordEncoder.matches(password, u.get().getPassword())) {
+            return u.get();
+        }
+        return null;
     }
 
     public boolean existsByUsername(String username){
