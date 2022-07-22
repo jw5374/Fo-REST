@@ -35,6 +35,9 @@ public class Product {
 	
 	@Column(name="count")
 	private int count;
+
+	@Column(name="images")
+	private String imageList;
 	
 	// "product" reference in cart
 	@OneToMany(mappedBy = "product")
@@ -105,8 +108,7 @@ public class Product {
 		return price;
 	}
 
-
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -120,7 +122,15 @@ public class Product {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+	public String getImageList() {
+		return imageList;
+	}
 	
+	public void setImageList(String imageList) {
+		this.imageList = imageList;
+	}
+
 	// cartList (relationship)
 	
 	public List<Cart> getCartList() {
@@ -142,7 +152,5 @@ public class Product {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", count="
 				+ count + "]";
 	}
-	
-	
 
 }
