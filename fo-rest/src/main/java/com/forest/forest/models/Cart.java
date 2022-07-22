@@ -3,6 +3,7 @@ package com.forest.forest.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,12 +27,12 @@ public class Cart
 	@Column(name="timeordered")
 	private Timestamp timeStamp;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="userid")
 	@OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="productid")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Product product;
@@ -41,7 +42,7 @@ public class Cart
 
 	public Cart() { }
 
-	public Cart(Timestamp timeStamp, User user, Product product, int count) {
+	public Cart(User user, Product product, int count, Timestamp timeStamp) {
 		super();
 		this.timeStamp = timeStamp;
 		this.user = user;

@@ -14,6 +14,10 @@ public class CartService {
     @Autowired
     CartRepository cartRepository;
 
+    public List<Cart> findAll() {
+        return cartRepository.findAll();        
+    }
+
     public List<Cart> findCartsByUsername(User user) {
         return cartRepository.findByUser(user);        
     }
