@@ -14,9 +14,7 @@ import com.forest.forest.models.User;
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Timestamp>
 {
-	//Does this work??
-	//public List<Product> FindByProductContaining(int price);
-	
+
 	public List<Cart> findByUser(User user);
 
 	@Query(value = "UPDATE carts SET productcount = :newcount WHERE cartid = :id RETURNING carts.productcount", nativeQuery = true)
