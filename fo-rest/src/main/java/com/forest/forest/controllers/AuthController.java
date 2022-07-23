@@ -74,6 +74,23 @@ public class AuthController {
         }
     }
 
+    @PutMapping("/user")
+    public ResponseEntity<String> updateAddress(HttpServletResponse res, @RequestHeader("Authorization") String authToken, @RequestBody User user) throws IOException {
+        String[] token = authToken.split(" ");
+        if(!token[0].equals("Bearer")) {
+            return new ResponseEntity<>("No Bearer Token", HttpStatus.UNAUTHORIZED);
+        }
+        try {
+            String uname = JWTUtil.verifyUserToken(token[1]);
+            if(!uname.equals(user.getUsername())) {
+                throw new JwtException("Username doesn't match");
+            }
+            return new ResponseEntity<>(userService.updateUserAddress(user.getShippingAddress(), user.getUsername()), HttpStatus.OK);
+        } catch(JwtException e) {
+            return new ResponseEntity<>("Token invalid", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
     @PostMapping(path = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<String> loginUser(@RequestBody User user) {
         try {
