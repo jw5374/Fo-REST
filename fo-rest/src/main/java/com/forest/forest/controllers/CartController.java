@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -70,6 +71,25 @@ public class CartController {
             }
             User user = userService.findByUsername(username);
             return cartService.findByUsername(user);
+        } catch(JwtException e) {
+            res.sendRedirect("/auth/invalid");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("/{user}/{productid}")
+    public Cart findAllByUser(HttpServletResponse res, @RequestHeader("Authorization") String authToken, @PathVariable("user") String username, @PathVariable("productid") long productId) throws IOException {
+        String[] token = authToken.split(" ");
+        if(!token[0].equals("Bearer")) {
+            res.sendRedirect("/auth/nobearer");
+        }
+        try {
+            String uname = JWTUtil.verifyUserToken(token[1]);
+            if(!uname.equals(username)) {
+                throw new JwtException("username doesn't match");
+            }
+            return cartService.findByUsernameAndProduct(username, productId);
         } catch(JwtException e) {
             res.sendRedirect("/auth/invalid");
             return null;
@@ -149,6 +169,43 @@ public class CartController {
         } catch(JwtException e) {
             res.sendRedirect("/auth/invalid");
             return -1;
+        }
+    }
+
+    @PutMapping("/{user}/item")
+    public int updateCart(HttpServletResponse res, @RequestHeader("Authorization") String authToken, @PathVariable("user") String username, @RequestBody Cart cart) throws IOException {
+        String[] token = authToken.split(" ");
+        if(!token[0].equals("Bearer")) {
+            res.sendRedirect("/auth/nobearer");
+        }
+        try {
+            String uname = JWTUtil.verifyUserToken(token[1]);
+            if(!uname.equals(username)) {
+                throw new JwtException("username doesn't match");
+            }
+            cartService.updateCartCount(cart.getCount(), cart.getCartid());
+            return 1;
+        } catch(JwtException e) {
+            res.sendRedirect("/auth/invalid");
+            return -1;
+        }
+    }
+
+    @PostMapping("/{user}")
+    public Cart saveCartItem(HttpServletResponse res, @RequestHeader("Authorization") String authToken, @PathVariable("user") String username, @RequestBody Cart cart) throws IOException {
+        String[] token = authToken.split(" ");
+        if(!token[0].equals("Bearer")) {
+            res.sendRedirect("/auth/nobearer");
+        }
+        try {
+            String uname = JWTUtil.verifyUserToken(token[1]);
+            if(!uname.equals(username)) {
+                throw new JwtException("username doesn't match");
+            }
+            return cartService.newCartItem(cart);
+        } catch(JwtException e) {
+            res.sendRedirect("/auth/invalid");
+            return null;
         }
     }
 }

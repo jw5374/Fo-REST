@@ -30,4 +30,12 @@ public class CartService {
     public int updateCartCount(int count, int id) {
         return cartRepository.updateCartCount(count, id);
     }
+
+    public Cart findByUsernameAndProduct(String username, long productId) {
+        return cartRepository.findByUserAndProduct(username, productId);
+    }
+
+    public Cart newCartItem(Cart cart) {
+        return cartRepository.save(cart);
+    }
 }

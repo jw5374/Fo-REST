@@ -1,6 +1,5 @@
 package com.forest.forest.repository;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +11,7 @@ import com.forest.forest.models.Cart;
 import com.forest.forest.models.User;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, Timestamp>
+public interface CartRepository extends JpaRepository<Cart, Integer>
 {
 
 	public List<Cart> findByUser(User user);
@@ -21,6 +20,12 @@ public interface CartRepository extends JpaRepository<Cart, Timestamp>
 	public int updateCartCount(
 		@Param("newcount") int newcount,
 		@Param("id") int id
+	);
+
+	@Query(value = "SELECT * FROM carts WHERE userid = :uname AND productid = :prodid", nativeQuery = true)
+	public Cart findByUserAndProduct(
+		@Param("uname") String username,
+		@Param("prodid") long prodId
 	);
 
 }
