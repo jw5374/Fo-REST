@@ -50,4 +50,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    public String updateUserAddress(String address, String username) {
+        return userRepository.updateUserAddress(address, username);
+    }
 }
