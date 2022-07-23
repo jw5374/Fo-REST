@@ -2,9 +2,12 @@ package com.forest.forest.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -22,10 +25,19 @@ import java.sql.Timestamp;
 public class Cart 
 {
 	@Id
+	@SequenceGenerator(
+		name="carts_cartid_seq",
+		sequenceName="carts_cartid_seq",
+		allocationSize=1
+	)
+	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator="carts_cartid_seq"
+	)
 	@Column(name="cartid")
 	private int cartid;
 
-	@Column(name="timeordered")
+	@Column(name="timeordered", insertable=false)
 	private Timestamp timeStamp;
 	
 	@ManyToOne
