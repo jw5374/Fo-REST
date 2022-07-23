@@ -39,4 +39,8 @@ public class ProductService {
 
         return allProd.subList(randIndex, randIndex + 8);
     }
+
+    public int updateProductStock(int count, long id) {
+        return productRepository.updateProductStock(count, id);
+    }
 }

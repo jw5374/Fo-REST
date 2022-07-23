@@ -1,13 +1,10 @@
 package com.forest.forest.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -39,18 +36,11 @@ public class Product {
 	@Column(name="images")
 	private String imageList;
 	
-	// "product" reference in cart
-	@OneToMany(mappedBy = "product")
-	private List<Cart> cartList;
-	
-	
 	/////////////////////////////////////////////////////////////
 	//    -------------------Constructors------------------    //
 	/////////////////////////////////////////////////////////////	
 	
-	public Product() {
-		// TODO Auto-generated constructor stub
-	}
+	public Product() { }
 
 
 	public Product(long id, String name, String description, int price, int count) {
@@ -129,17 +119,6 @@ public class Product {
 	
 	public void setImageList(String imageList) {
 		this.imageList = imageList;
-	}
-
-	// cartList (relationship)
-	
-	public List<Cart> getCartList() {
-		return cartList;
-	}
-
-
-	public void setCartList(List<Cart> cartList) {
-		this.cartList = cartList;
 	}
 
 	/////////////////////////////////////////////////////////////

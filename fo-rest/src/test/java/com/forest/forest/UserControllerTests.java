@@ -16,7 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.forest.forest.controllers.UserController;
+import com.forest.forest.controllers.AuthController;
 import com.forest.forest.models.User;
 import com.forest.forest.service.UserService;
 
@@ -25,7 +25,7 @@ import com.forest.forest.service.UserService;
 public class UserControllerTests {
 
     @InjectMocks
-    UserController userController;
+    AuthController userController;
 
     @MockBean
     private UserService userService;

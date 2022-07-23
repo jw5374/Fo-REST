@@ -2,10 +2,17 @@ package com.forest.forest.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import java.sql.Timestamp;
 
 @Entity
@@ -18,26 +25,50 @@ import java.sql.Timestamp;
 public class Cart 
 {
 	@Id
-	@Column(name="timeordered")
+	@SequenceGenerator(
+		name="carts_cartid_seq",
+		sequenceName="carts_cartid_seq",
+		allocationSize=1
+	)
+	@GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator="carts_cartid_seq"
+	)
+	@Column(name="cartid")
+	private int cartid;
+
+	@Column(name="timeordered", insertable=false)
 	private Timestamp timeStamp;
 	
-    @ManyToOne
+	@ManyToOne
     @JoinColumn(name="userid")
+	@OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 	
 	@ManyToOne
 	@JoinColumn(name="productid")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Product product;
 	
 	@Column(name="productcount")
 	private int count;
 
-	public Cart(Timestamp timeStamp, User user, Product product, int count) {
-		super();
+	public Cart() { }
+	
+	public Cart(int cartid, Timestamp timeStamp, User user, Product product, int count) {
+		this.cartid = cartid;
 		this.timeStamp = timeStamp;
 		this.user = user;
 		this.product = product;
 		this.count = count;
+	}
+
+	public int getCartid() {
+		return cartid;
+	}
+
+	public void setCartid(int cartid) {
+		this.cartid = cartid;
 	}
 
 	public Timestamp getTimeStamp() {
@@ -76,6 +107,5 @@ public class Cart
 	public String toString() {
 		return "Cart [timeStamp=" + timeStamp + ", user=" + user + ", product=" + product + ", count=" + count + "]";
 	}
-	
 	
 }

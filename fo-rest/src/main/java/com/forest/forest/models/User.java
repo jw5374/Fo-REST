@@ -1,11 +1,8 @@
 package com.forest.forest.models;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,10 +20,6 @@ public class User {
 
     @Column(name = "shippingaddress")
     private String shippingAddress;
-    
-    // "user" reference in cart
-	@OneToMany(mappedBy = "user") 
-	private List<Cart> userList;
 
     public User(){
         
@@ -71,18 +64,10 @@ public class User {
         this.email = email;
     }
 
-	public List<Cart> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<Cart> userList) {
-		this.userList = userList;
-	}
-
 	@Override
 	public String toString() {
 		return "User [username=" + username + ", password=" + password + ", email=" + email + ", shippingAddress="
-				+ shippingAddress + ", userList=" + userList + "]";
+				+ shippingAddress + "]";
 	}
     
 }

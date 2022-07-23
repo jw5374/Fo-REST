@@ -24,4 +24,10 @@ public interface ProductRepository extends JpaRepository<Product, Long>
 	);
 	
 	Optional<Product> findById(long id);
+
+	@Query(value = "UPDATE products SET \"count\" = :newcount WHERE id = :id RETURNING products.\"count\"", nativeQuery = true)
+	int updateProductStock(
+		@Param("newcount") int newcount,
+		@Param("id") long id
+	);
 }
