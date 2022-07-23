@@ -40,9 +40,7 @@ public class Product {
 	//    -------------------Constructors------------------    //
 	/////////////////////////////////////////////////////////////	
 	
-	public Product() {
-		// TODO Auto-generated constructor stub
-	}
+	public Product() { }
 
 
 	public Product(long id, String name, String description, int price, int count) {
