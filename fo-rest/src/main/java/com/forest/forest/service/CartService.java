@@ -21,4 +21,13 @@ public class CartService {
     public List<Cart> findByUsername(User user) {
         return cartRepository.findByUser(user);        
     }
+
+    public boolean deleteCart(Cart cart) {
+        cartRepository.delete(cart);
+        return true;
+    }
+
+    public int updateCartCount(int count, int id) {
+        return cartRepository.updateCartCount(count, id);
+    }
 }
