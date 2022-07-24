@@ -33,13 +33,15 @@ public class AuthController {
         if(!token[0].equals("Bearer")) {
             res.sendRedirect("/auth/nobearer");
         }
-        try {
-            JWTUtil.verifyUserToken(token[1]);
-            return userService.findAll();
-        } catch(JwtException e) {
-            res.sendRedirect("/auth/invalid");
-            return null;
+        else {
+            try {
+                JWTUtil.verifyUserToken(token[1]);
+                return userService.findAll();
+            } catch(JwtException | ArrayIndexOutOfBoundsException e) {
+                res.sendRedirect("/auth/invalid");
+            }
         }
+        return null;
     }
 
     @ResponseBody
@@ -49,16 +51,18 @@ public class AuthController {
         if(!token[0].equals("Bearer")) {
             res.sendRedirect("/auth/nobearer");
         }
-        try {
-            String uname = JWTUtil.verifyUserToken(token[1]);
-            if(!uname.equals(user)) {
-                throw new JwtException("Username doesn't match");
+        else{
+            try {
+                String uname = JWTUtil.verifyUserToken(token[1]);
+                if(!uname.equals(user)) {
+                    throw new JwtException("Username doesn't match");
+                }
+                return userService.findByUsername(user);
+            } catch(JwtException | ArrayIndexOutOfBoundsException e) {
+                res.sendRedirect("/auth/invalid");
             }
-            return userService.findByUsername(user);
-        } catch(JwtException e) {
-            res.sendRedirect("/auth/invalid");
-            return null;
         }
+        return null;
     }
 
     @GetMapping("/user")
