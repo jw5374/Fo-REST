@@ -1,4 +1,4 @@
-package com.forest.forest;
+package com.forest.forest.service;
 
 import static org.mockito.Mockito.when;
 
@@ -20,7 +20,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.forest.forest.models.Product;
 import com.forest.forest.repository.ProductRepository;
-import com.forest.forest.service.ProductService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)

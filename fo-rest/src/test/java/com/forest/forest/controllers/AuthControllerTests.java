@@ -1,4 +1,4 @@
-package com.forest.forest;
+package com.forest.forest.controllers;
 
 import static org.mockito.Mockito.when;
 

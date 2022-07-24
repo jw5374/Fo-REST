@@ -1,4 +1,4 @@
-package com.forest.forest;
+package com.forest.forest.service;
 
 import static org.mockito.Mockito.when;
 
@@ -23,7 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.forest.forest.models.User;
 import com.forest.forest.repository.UserRepository;
-import com.forest.forest.service.UserService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)

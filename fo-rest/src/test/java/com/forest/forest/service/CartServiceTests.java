@@ -1,4 +1,4 @@
-package com.forest.forest;
+package com.forest.forest.service;
 
 import static org.mockito.Mockito.when;
 
@@ -22,7 +22,6 @@ import com.forest.forest.models.Cart;
 import com.forest.forest.models.Product;
 import com.forest.forest.models.User;
 import com.forest.forest.repository.CartRepository;
-import com.forest.forest.service.CartService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
