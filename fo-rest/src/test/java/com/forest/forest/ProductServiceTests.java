@@ -17,7 +17,6 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.forest.forest.models.Product;
 import com.forest.forest.repository.ProductRepository;
@@ -32,9 +31,6 @@ public class ProductServiceTests {
 
     @MockBean
     private ProductRepository productRepository;
-
-    @MockBean
-    private PasswordEncoder passwordEncoder;
 
     private Product product;
 
@@ -114,6 +110,6 @@ public class ProductServiceTests {
     public void testUpdateProductStockReturnsInt(){
         when(productRepository.updateProductStock(3,1)).thenReturn(3);
 
-        assertThat(productRepository.updateProductStock(3, 1)).isEqualTo(3);
+        assertThat(productService.updateProductStock(3, 1)).isEqualTo(3);
     }
 }
