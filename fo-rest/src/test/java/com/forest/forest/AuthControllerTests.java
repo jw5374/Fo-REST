@@ -22,22 +22,22 @@ import com.forest.forest.service.UserService;
 
 @SpringBootTest
 @ExtendWith(MockitoExtension.class)
-public class UserControllerTests {
+public class AuthControllerTests {
 
     @InjectMocks
-    AuthController userController;
+    AuthController authController;
 
     @MockBean
     private UserService userService;
 
     @Test
-    public void testAddUserReturns200(){
+    public void testAddValidUserReturns200(){
         User alex = new User("alex", "hunter2", "alex@gmail.com", "123 Test Avenue");
 
         when(userService.existsByUsername(alex.getUsername())).thenReturn(false);
         when(userService.add(alex)).thenReturn(alex);
         
-        ResponseEntity<String> responseEntity = userController.registerUser(alex);
+        ResponseEntity<String> responseEntity = authController.registerUser(alex);
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
     }
 }
