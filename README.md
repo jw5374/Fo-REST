@@ -5,41 +5,39 @@
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Getting Started](#getting-started)
-
-- [Usage](#usage)
-
-- [User API](#user-api)
-
 - [License](#license)
 ---
 ## [Project Description](#project-description)
-A java-based ORM for seamless access to a database. Users can persist classes and objects through the use of methods and annotations. This effectively relieves users from the burden of using a Query Language.
+A full-stack E-Commerce web application based around purchasing overseas model kits.
 
 ## [Technologies Used](#technologies-used)
-* PostgreSQL - version 42.4.0  
-* Java - version 8.0  
-* Apache commons - version 2.9.0
+* PostgreSQL
+* Java 
 * Maven
+* Spring Boot - Web, Security, Data JPA
+* Java JWT
+* HTML, CSS, Javascript
+* AWS Elastic Beanstalk, CodePipeline, S3 Bucket
+* git, Github
 
 ## [Features](#features)  
-* Easy to integrate API through annotations and credential set-up.
-* All queries are handled via method calls, which means no need for understanding a Query Language
-* Annotations are plain in name and use, allowing for little confusion on interpretation. 
-* Credential set-up is done through a Configuration object, which stores data like the root and password to the database.
-* Operations are executed through a Session object, which performs CRUD operations on the database.
+* Users are able to log into the application.
+* Users are able to register a new account.
+* Users are able to create and maintain a profile page.
+* Users are able to see a list of available products for me to add to my cart
+* Users are able to add items to my cart that I will later purchase or remove from my cart
+* Users are able to checkout with the items in my cart, purchasing them and removing them from the inventory
 
 To-do list: [`for future iterations`]
-* Mapping of join columns inside of entities.    
-* Implementation of aggregate functions.  
-* Implementation of Multiplicity Annotations such as OneToMany, ManyToOne, OneToOne, and ManyToMany.
-* Support multiple different SQL Vendors
-* Add a `DEFAULT` constraint
+* Increased product filtering options (e.g. by price, stock, tags, etc.)
+* Cookie based authentication
+* Payment processing
+* Allow for purchasing without an account
 
 ## [Getting Started](#getting-started) 
-  
-## [Usage](#usage)  
 
-## [User API](#user-api)
+Our front-end interface is located [here](http://forestfrontend.s3-website.us-east-2.amazonaws.com/)
+The repository for our front-end is [here](https://github.com/jw5374/Fo-REST-Frontend)
 
 ## [License](#license)
 
