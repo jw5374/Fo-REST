@@ -37,6 +37,7 @@ To-do list: [`for future iterations`]
 ## [Getting Started](#getting-started) 
 
 Our front-end interface is located [here](http://forestfrontend.s3-website.us-east-2.amazonaws.com/)
+<br>
 The repository for our front-end is [here](https://github.com/jw5374/Fo-REST-Frontend)
 
 ## [License](#license)
