@@ -1,0 +1,29 @@
+2022-07-27 06:26:27.561  WARN 15304 --- [HikariPool-6 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Thread starvation or clock leap detected (housekeeper delta=6h14m47s331ms948µs900ns).
+2022-07-27 07:21:43.634  INFO 15304 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-27 07:21:43.643  INFO 15304 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2022-07-27 07:21:43.651  INFO 15304 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2022-07-27 07:21:43.811  INFO 15304 --- [restartedMain] com.forest.forest.FoRestApplication      : Starting FoRestApplication using Java 17.0.1 on LAPTOP-7J5NLAE5 with PID 15304 (C:\Users\steve\Documents\RevProjects\Fo-REST\fo-rest\target\classes started by steve in C:\Users\steve\Documents\RevProjects\Fo-REST\fo-rest)
+2022-07-27 07:21:43.812  INFO 15304 --- [restartedMain] com.forest.forest.FoRestApplication      : No active profile set, falling back to 1 default profile: "default"
+2022-07-27 07:21:44.032  INFO 15304 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-07-27 07:21:44.049  INFO 15304 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 3 JPA repository interfaces.
+2022-07-27 07:21:44.183  INFO 15304 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5000 (http)
+2022-07-27 07:21:44.184  INFO 15304 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-07-27 07:21:44.184  INFO 15304 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-07-27 07:21:44.215  INFO 15304 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-07-27 07:21:44.215  INFO 15304 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 400 ms
+2022-07-27 07:21:44.246  INFO 15304 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2022-07-27 07:21:45.252  INFO 15304 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2022-07-27 07:21:45.258  INFO 15304 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-07-27 07:21:45.283  INFO 15304 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-07-27 07:21:45.477  INFO 15304 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-07-27 07:21:45.478  INFO 15304 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-07-27 07:21:45.616  INFO 15304 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@fa448c0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@306b15fa, org.springframework.security.web.context.SecurityContextPersistenceFilter@4c93baa2, org.springframework.security.web.header.HeaderWriterFilter@515a8d84, org.springframework.web.filter.CorsFilter@115e9754, org.springframework.security.web.authentication.logout.LogoutFilter@bb240e2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30801714, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35b39a2d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b3c3c63, org.springframework.security.web.session.SessionManagementFilter@55614414, org.springframework.security.web.access.ExceptionTranslationFilter@7d7023ff, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7df4f98d]
+2022-07-27 07:21:45.627  WARN 15304 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-07-27 07:21:45.742  INFO 15304 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-07-27 07:21:45.753  INFO 15304 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5000 (http) with context path ''
+2022-07-27 07:21:45.758  INFO 15304 --- [restartedMain] com.forest.forest.FoRestApplication      : Started FoRestApplication in 1.983 seconds (JVM running for 59921.718)
+2022-07-27 07:21:45.760  INFO 15304 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-07-27 07:21:47.533  INFO 15304 --- [RMI TCP Connection(649)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2022-07-27 07:21:47.549  INFO 15304 --- [RMI TCP Connection(649)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-07-27 07:21:47.550  INFO 15304 --- [RMI TCP Connection(649)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2022-07-27 07:21:47.812  INFO 15304 --- [RMI TCP Connection(649)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
